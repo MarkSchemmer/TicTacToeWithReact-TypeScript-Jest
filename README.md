@@ -18,7 +18,7 @@ For this project I implemented a small Tic Tac Toe game but I used the following
 * When no one wins, display a message about the result being a draw
 
 
-Addition notes and QA: <br />
+Additional notes and QA: <br />
 I have implemented this solution many times, but what I wanted to acheive by this tutorail was <br>
 taking advantage of TypeScript and TDD with TID with Jest.
 
