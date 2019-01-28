@@ -29,4 +29,4 @@ What Resources did I use for the development of this project:
 * [Pluralsight: Testing React Applications](https://app.pluralsight.com/library/courses/testing-react-applications-jest/table-of-contents)
 
 
-## I got the main objectives from the React tutorial site but all Implementation is my own.
+## I got the main objectives from the React tutorial site but all Implementations are my own solutions.
