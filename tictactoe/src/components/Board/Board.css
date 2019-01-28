@@ -1,0 +1,15 @@
+
+.row { 
+    width:400px;
+    height: 100px;
+    /* border: 1px solid black; */
+    margin: auto;
+}
+
+
+.column { 
+    width: 130px;
+    height: 100px;
+    border : 1px solid black;
+    display: inline-block;
+}

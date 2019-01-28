@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing that <Board /> has greetings tag with my name Snapshot test for <Board />  1`] = `
+<div
+  className="main"
+>
+  <div
+    className="greetings"
+  >
+    Greetings 
+    Mark
+  </div>
+  <div
+    className="board"
+  >
+    <div
+      className="row"
+    >
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+    </div>
+    <div
+      className="row"
+    >
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+    </div>
+    <div
+      className="row"
+    >
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+      <span
+        className="column"
+      >
+         
+         
+      </span>
+    </div>
+  </div>
+</div>
+`;
