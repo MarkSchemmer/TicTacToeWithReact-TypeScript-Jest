@@ -14,19 +14,21 @@ let fakeProps = {
 enzyme.configure({ adapter: new Adapter() });
 
 describe('dummy test for Square ', () => {
+
     it('dummy', () => {
         expect(true).toEqual(true)
     })
+
 })
 
 describe(' Simulating events on <Square />', () => {
+
     it(' Will onClick be fired when clicked ', () => { 
         const onClickSpy = jest.fn()
         const wrapper = enzyme.shallow( <Square {...fakeProps} onClick={onClickSpy} /> )
         wrapper.find('.column').simulate('click')
         expect(onClickSpy).toHaveBeenCalled() 
     })
-
 
     it('render <Board /> and simulate change on first <Square /> ', () => {
         const onClickSpy = jest.fn()
@@ -36,17 +38,15 @@ describe(' Simulating events on <Square />', () => {
 
         expect(onClickSpy).toHaveBeenCalled()
         
-
         wrapper.setProps({ val : 'X' })
 
         expect(wrapper.find('.square-val').text()).toBe('X')
     })
 
-
     it(' test update for <Square /> component ', () => {
 
         const onClickSpy = jest.fn()
-        
+
         const wrapper = enzyme.mount( <Board /> )
 
         expect(wrapper.find('.column')).toHaveLength(9)
@@ -58,7 +58,6 @@ describe(' Simulating events on <Square />', () => {
         expect( wrapper.find('.column').at(0).text() ).toEqual('X')
 
     })
-
 })
 
 describe(' snapshot testing for <Square /> ', () => {
