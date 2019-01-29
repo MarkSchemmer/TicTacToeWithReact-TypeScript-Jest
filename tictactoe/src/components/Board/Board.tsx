@@ -47,8 +47,6 @@ class Board extends Component<IProps, IState> {
         const hasWinner = api.IsWinner(this.state.board)
         let whichOption = null 
 
-        console.log(hasWinner)
-
         if(hasWinner===api.OPTIONS.XWIN)
             whichOption = api.OPTIONS.XWIN
         else if (hasWinner === api.OPTIONS.XLOSE) 
@@ -59,8 +57,7 @@ class Board extends Component<IProps, IState> {
      if (whichOption)
         this.setState( { IsWinner : whichOption }, () => {
             this.setWinner()
-        } )
-        
+        }) 
     }
 
     public setWinner = () => {

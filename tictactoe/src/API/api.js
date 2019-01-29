@@ -16,8 +16,6 @@ export function IsWinner (board){
     .reduce((acc,cur) => acc.concat(cur), [])
     .map( x => x.val )
 
-    console.log(nb)
-
     let waysToWin = [
         [0,1,2],
         [0,4,8],
@@ -30,8 +28,6 @@ export function IsWinner (board){
     ]
 
     for(let i = 0; i < waysToWin.length; i++) {
-
-        console.log(threeInRow('X', waysToWin[i], nb))
 
         if(threeInRow('X', waysToWin[i], nb))
             return OPTIONS.XWIN
