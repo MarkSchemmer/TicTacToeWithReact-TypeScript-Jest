@@ -1,7 +1,13 @@
 
+.whoms-turn {
+    font-size:1.5em;
+    margin-bottom: 15px;
+}
+
+
 .row { 
     width:400px;
-    height: 100px;
+    height: 130px;
     /* border: 1px solid black; */
     margin: auto;
 }
@@ -9,7 +15,7 @@
 
 .column { 
     width: 130px;
-    height: 100px;
+    height: 130px;
     border : 1px solid black;
     display: inline-block;
 }

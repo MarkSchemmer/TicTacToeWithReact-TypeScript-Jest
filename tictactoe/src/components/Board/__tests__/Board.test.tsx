@@ -20,23 +20,20 @@ import Board from '../Board'
 enzyme.configure({ adapter: new Adapter() });
 
 describe('testing that <Board /> has greetings tag with my name', () => {
-let greetings 
-beforeEach(() => {
-    greetings = enzyme.shallow( <Board /> )
-})
 
+    let greetings 
+    beforeEach(() => {
+        greetings = enzyme.shallow( <Board /> )
+    })
 
     it(' Should be true! ', () => {
             expect(greetings.find('.greetings').text()).toEqual('Greetings Mark')
     }) 
 
-
     it(' should be false ', () => {
         let expected = greetings.find('.greetings').text() === 'Mark Greetingsw'
         expect(expected).toEqual(false)
     })
-
-
 
     // board renders with 3 rows and 3 columns...  
 
@@ -50,9 +47,7 @@ beforeEach(() => {
     it(' should have 9 columns?', () => {
         expect(greetings.find('.column')).toHaveLength(9)
     })
-
-
-
+    
     // has proper state 
 
     it(' has state items Mark and Board', () => {
