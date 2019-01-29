@@ -30,3 +30,11 @@ What Resources did I use for the development of this project:
 
 
 ## I got the main objectives from the React tutorial site but all Implementations are my own solutions.
+
+
+## Some additional learning notes (only applies to React TypeScript)
+
+Found a [fix](https://github.com/Microsoft/TypeScript/issues/15230#issuecomment-302779021) for error for dealing with modules. 
+
+I was having trouble exporting code from  api.js, for other files.<br />
+The link above clearly explains the fix.
