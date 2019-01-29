@@ -19,7 +19,7 @@ import Board from '../Board'
 
 enzyme.configure({ adapter: new Adapter() });
 
-describe('testing that <Board /> has greetings tag with my name', () => {
+describe('', () => {
 
     let greetings 
     beforeEach(() => {
@@ -45,9 +45,10 @@ describe('testing that <Board /> has greetings tag with my name', () => {
     // board should have 9 columns... 
 
     it(' should have 9 columns?', () => {
-        expect(greetings.find('.column')).toHaveLength(9)
+        const wrapper = enzyme.mount(<Board /> )
+        expect(wrapper.find('.column')).toHaveLength(9)
     })
-    
+
     // has proper state 
 
     it(' has state items Mark and Board', () => {

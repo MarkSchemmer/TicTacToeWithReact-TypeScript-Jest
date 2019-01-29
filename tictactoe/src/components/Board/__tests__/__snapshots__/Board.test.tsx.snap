@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`testing that <Board /> has greetings tag with my name Snapshot test for <Board />  1`] = `
+exports[`Snapshot test for <Board />  1`] = `
 <div
   className="main"
 >
@@ -11,6 +11,15 @@ exports[`testing that <Board /> has greetings tag with my name Snapshot test for
     Mark
   </div>
   <div
+    className="whoms-turn"
+  >
+     Player 
+    <strong>
+      X
+    </strong>
+     your move! 
+  </div>
+  <div
     className="board"
   >
     <div
@@ -18,43 +27,27 @@ exports[`testing that <Board /> has greetings tag with my name Snapshot test for
     >
       <span
         className="column"
+        onClick={[Function]}
       >
-         
-         
+        <div
+          className="square-val"
+        />
       </span>
       <span
         className="column"
+        onClick={[Function]}
       >
-         
-         
+        <div
+          className="square-val"
+        />
       </span>
       <span
         className="column"
+        onClick={[Function]}
       >
-         
-         
-      </span>
-    </div>
-    <div
-      className="row"
-    >
-      <span
-        className="column"
-      >
-         
-         
-      </span>
-      <span
-        className="column"
-      >
-         
-         
-      </span>
-      <span
-        className="column"
-      >
-         
-         
+        <div
+          className="square-val"
+        />
       </span>
     </div>
     <div
@@ -62,21 +55,55 @@ exports[`testing that <Board /> has greetings tag with my name Snapshot test for
     >
       <span
         className="column"
+        onClick={[Function]}
       >
-         
-         
+        <div
+          className="square-val"
+        />
       </span>
       <span
         className="column"
+        onClick={[Function]}
       >
-         
-         
+        <div
+          className="square-val"
+        />
       </span>
       <span
         className="column"
+        onClick={[Function]}
       >
-         
-         
+        <div
+          className="square-val"
+        />
+      </span>
+    </div>
+    <div
+      className="row"
+    >
+      <span
+        className="column"
+        onClick={[Function]}
+      >
+        <div
+          className="square-val"
+        />
+      </span>
+      <span
+        className="column"
+        onClick={[Function]}
+      >
+        <div
+          className="square-val"
+        />
+      </span>
+      <span
+        className="column"
+        onClick={[Function]}
+      >
+        <div
+          className="square-val"
+        />
       </span>
     </div>
   </div>

@@ -23,7 +23,7 @@ class Square extends Component<IProps, IState> {
         return (
             <React.Fragment>
                 <span onClick={() => this.props.onClick(this.props.coor)} className="column"> 
-                       <div> { this.props.val }  </div> 
+                       <div className="square-val">{ this.props.val }</div> 
                 </span>
             </React.Fragment>
         )

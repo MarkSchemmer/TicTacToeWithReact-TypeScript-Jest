@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` snapshot testing for <Square />  snapshot of square...  1`] = `
+<span
+  className="column"
+  onClick={[Function]}
+>
+  <div
+    className="square-val"
+  />
+</span>
+`;

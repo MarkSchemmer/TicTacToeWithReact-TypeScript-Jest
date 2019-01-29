@@ -24,7 +24,6 @@ class Board extends Component<IProps, IState> {
 
 
     public onClick = (coor:Array<number>) => {
-
         const [x,y] = coor
         if(this.state.board[x][y].val !== null) return  
         let copy = Object.assign({}, 
@@ -33,7 +32,6 @@ class Board extends Component<IProps, IState> {
             copy.board[x][y].val = 'X'
         else 
             copy.board[x][y].val = 'O'
-
         this.setState(copy)
     }
 
