@@ -8,8 +8,8 @@ For this project I implemented a small Tic Tac Toe game but I used the following
 ## The main objectives of this example:
 * Lets you play tic-tac-toe
 * Indicates when a player has won the game
-* Stores a game’s history as a game progresses
-* Allows players to review a game’s history and see previous versions of a game’s board
+* Stores a game’s history as the game progresses
+* Allows players to review a game’s history and change moves
 * Display the location for each move in the format (col, row) in the move history list
 * Bold the currently selected item in the move list
 * Rewrite Board to use two loops to make the squares instead of hardcoding them
