@@ -13,7 +13,7 @@ interface IState {
     name : string, 
     board : any,
     turn : number,
-    IsWinner : number | null 
+    IsWinner : number | null,
 }
 
 class Board extends Component<IProps, IState> {
@@ -21,21 +21,22 @@ class Board extends Component<IProps, IState> {
 
     public state : IState = {
         name : 'Mark',
-        board : genBoard(),
+        board : [genBoard()],
         turn : 0,
-        IsWinner : null 
+        IsWinner : null, 
     }
 
 
     public onClick = (coor:Array<number>) => {
         const [x,y] = coor
-        if(this.state.board[x][y].val !== null) return  
+
+        if(this.state.board[this.state.turn][x][y].val !== null) return  
         let copy = Object.assign({}, 
-            { board : this.state.board, turn : this.state.turn+1, name: 'Mark' })
+            { board : this.state.board.concat(this.state.board), turn : this.state.turn+1, name: 'Mark' })
         if(this.state.turn%2==0)
-            copy.board[x][y].val = 'X'
+            copy.board[this.state.turn][x][y].val = 'X'
         else 
-            copy.board[x][y].val = 'O'
+            copy.board[this.state.turn][x][y].val = 'O'
         this.setState(copy, () => {
             this.checkForWinner()
         })
@@ -44,7 +45,8 @@ class Board extends Component<IProps, IState> {
     private SetIsWinner = (option:number|null) => this.setState({ IsWinner : option })  
 
     public checkForWinner = () => {
-        const hasWinner = api.IsWinner(this.state.board)
+        console.log(this.state.board)
+        const hasWinner = api.IsWinner(this.state.board[this.state.turn])
         let whichOption = null 
 
         if(hasWinner===api.OPTIONS.XWIN)
@@ -99,7 +101,7 @@ class Board extends Component<IProps, IState> {
                   <div className="greetings">Greetings { this.state.name }</div>
                   <div className="whoms-turn">  { this.setWinner() } </div>
                     <div className="board">
-                            { this.state.board.map((x:any) => 
+                            { this.state.board[this.state.turn].map((x:any) => 
                                <div className="row" key={ Date.now() * (Math.random() * 100) }>
                                     { x.map((z:any) => <Square key={z.id} {...z} 
                                         onClick={this.onClick.bind(this)} /> )}
