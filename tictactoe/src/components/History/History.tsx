@@ -1,41 +1,55 @@
 import React, { Component } from 'react'
 import * as  BoardAttributes from '../Board/BoardTypes'
+import Button from './Button/Button'
 import './History.css'
 
 interface IProps {
-    history : Array<BoardAttributes.BoardWithMoves>
+    history : Array<BoardAttributes.BoardWithMoves>, 
+    goBackInTime : any 
 }
 
-class History extends Component<IProps> {
+interface IState {
+    whoIsClicked : number | null 
+}
+
+class History extends Component<IProps, IState> {
 
     constructor(props : IProps) {
         super(props)
+        this.handleClickButton = this.handleClickButton.bind(this)
     }
 
 
+    public state : IState = {
+            whoIsClicked : null 
+    }
+
+
+    public handleClickButton = (index: number | null) => {
+        this.setState({ whoIsClicked : index}, () => this.props.goBackInTime(index) )
+    }
+
         public render () {
+            
             return (
                     <div className="history">
-                            { this.props.history.map((obj, index) => 
-                                
-                                    {if(index === 0) {
-                                            return (
-                                                <React.Fragment key={index}>
-                                                    <button>Start of Match</button>
-                                                </React.Fragment>
-                                            )
-                                    } else {
-                                        let [x,y] = obj.Move
-                                            return (
-                                                <React.Fragment key={index*Date.now()}>
-                                                    <button>{` Player: ${obj.WhomMoved} Move :${index} Coordinate : (${x},${y}) `}</button>   
-                                                </React.Fragment>
-                                            )
-                                    }}
-                                )}
+                            { this.props.history.map((obj, index) => {
+                                let [x, y] = obj.Move
+                                return (
+                                    <React.Fragment>
+                                        <Button key={index} obj={obj} index={index}
+                                                 x={x} y={y} handleClick={this.handleClickButton} 
+                                                 whoIsClicked={this.state.whoIsClicked} /> 
+                                    </React.Fragment>
+                                )
+                            })}
                     </div>
             )
     }
 }
 
 export default History
+
+
+// Select button and move to that point in history. and see all moves up to that point -> in process 
+// Highlight selected move in history -> waiting ... 

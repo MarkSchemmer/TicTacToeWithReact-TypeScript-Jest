@@ -21,12 +21,43 @@ interface IState {
 class Board extends Component<IProps, IState> {
 
 
+    constructor(props : IProps){
+        super(props)
+
+        this.goBackInTime = this.goBackInTime.bind(this)
+    }
+
     public state : IState = {
         name : 'Mark',
         board : [api.genBoard()],
         turn : 0,
         IsWinner : null, 
     }
+
+
+    public goBackInTime = (index : number) => {
+        let copyOfBaord = this.state.board.slice(0, index+1)
+        let newTurn = index
+        this.setState({ 
+            // board : copyOfBaord,
+            turn : newTurn
+         }, () => {
+            // console.log(this.state.board)
+            // console.log(this.state.turn)
+            // console.log(this.state.board[this.state.turn])
+         })
+    } 
+
+
+
+    public resetGame = () : void => {
+        this.setState({
+            board: [api.genBoard()], 
+            turn : 0, 
+            IsWinner : null 
+        })
+    }
+
 
 
     public onClick = (coor:Array<number>) => {
@@ -37,10 +68,10 @@ class Board extends Component<IProps, IState> {
         if(this.state.IsWinner !== null) return 
 
         // copy of history
-        let copyOfHistory = this.state.board[this.state.turn].history
+        let copyOfHistory = JSON.parse(JSON.stringify(this.state.board.slice()[this.state.turn].history.slice().map(x => x).slice()))
 
         // copy of Move 
-        let copyOfMove = this.state.board[this.state.turn].Move 
+        let copyOfMove = this.state.board[this.state.turn].Move.slice()
         copyOfMove = [x,y]
 
 
@@ -59,7 +90,7 @@ class Board extends Component<IProps, IState> {
         this.setState((prevState) => {
             return {
                 turn : prevState.turn+1,
-                board : [...this.state.board, newCopy]
+                board : prevState.board.concat(newCopy)
             }
         }, () => this.checkForWinner())
     }
@@ -118,16 +149,19 @@ class Board extends Component<IProps, IState> {
         return (
             <React.Fragment>
                 <div className="main">
-                <History history={this.state.board} /> 
+                <History history={this.state.board} goBackInTime={this.goBackInTime} /> 
                   <div className="greetings">Greetings { this.state.name }</div>
                   <div className="whoms-turn">  { this.setWinner() } </div>
                     <div className="board">
                             { this.state.board[this.state.turn].history.map((x:any) => 
                                <div className="row" key={ Date.now() * (Math.random() * 100) }>
-                                    { x.map((z:any) => <Square key={z.id} {...z} 
+                                    { x.map((z:any) => <Square key={z.id * Date.now()} {...z} 
                                         onClick={this.onClick.bind(this)} /> )}
                                </div> )}
                     </div>
+                   { this.state.IsWinner ? <div className="play-again">
+                                <button onClick={() => this.resetGame() }>Click to play again.</button>
+                   </div> : null  }
                 </div>
             </React.Fragment>
         )
