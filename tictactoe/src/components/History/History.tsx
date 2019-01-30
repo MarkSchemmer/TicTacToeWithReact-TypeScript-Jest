@@ -25,7 +25,6 @@ class History extends Component<IProps> {
                                                 </React.Fragment>
                                             )
                                     } else {
-                                        console.log(obj.Move)
                                         let [x,y] = obj.Move
                                             return (
                                                 <React.Fragment>
