@@ -66,7 +66,6 @@ class Board extends Component<IProps, IState> {
  
 
     public checkForWinner = () => {
-        console.log('the board: ',this.state.board)
         const hasWinner = api.IsWinner(this.state.board[this.state.turn].history)
         let whichOption = null 
 

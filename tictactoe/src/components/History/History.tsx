@@ -20,15 +20,15 @@ class History extends Component<IProps> {
                                 
                                     {if(index === 0) {
                                             return (
-                                                <React.Fragment>
-                                                    <button key={index}>Start of Match</button>
+                                                <React.Fragment key={index}>
+                                                    <button>Start of Match</button>
                                                 </React.Fragment>
                                             )
                                     } else {
                                         let [x,y] = obj.Move
                                             return (
-                                                <React.Fragment>
-                                                    <button key={index}>{` Player: ${obj.WhomMoved} Move :${index} Coordinate : (${x},${y}) `}</button>   
+                                                <React.Fragment key={index*Date.now()}>
+                                                    <button>{` Player: ${obj.WhomMoved} Move :${index} Coordinate : (${x},${y}) `}</button>   
                                                 </React.Fragment>
                                             )
                                     }}
