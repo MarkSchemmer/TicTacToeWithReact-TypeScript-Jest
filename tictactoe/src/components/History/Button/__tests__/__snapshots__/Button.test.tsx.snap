@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` snapshot test for <Button />   snapshot test 1`] = `
+<button
+  className="hist-btn"
+  onClick={[Function]}
+>
+   
+   Player: null Move :1 Coordinate : (0, 0) 
+   
+</button>
+`;

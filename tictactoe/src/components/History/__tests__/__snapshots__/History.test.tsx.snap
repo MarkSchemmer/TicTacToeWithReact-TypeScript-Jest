@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` Snapshot for <History />   Snapshot of <History />  1`] = `
+<div
+  className="history"
+>
+  <button
+    className="hist-btn"
+    onClick={[Function]}
+  >
+     
+    Start of Match
+     
+  </button>
+</div>
+`;

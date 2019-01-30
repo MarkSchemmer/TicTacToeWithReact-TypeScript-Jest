@@ -24,7 +24,6 @@ class History extends Component<IProps, IState> {
             whoIsClicked : null 
     }
 
-
     public handleClickButton = (index: number | null) => {
         this.setState({ whoIsClicked : index}, () => this.props.goBackInTime(index) )
     }
@@ -36,8 +35,8 @@ class History extends Component<IProps, IState> {
                             { this.props.history.map((obj, index) => {
                                 let [x, y] = obj.Move
                                 return (
-                                    <React.Fragment>
-                                        <Button key={index} obj={obj} index={index}
+                                    <React.Fragment key={index*Date.now()}>
+                                        <Button  obj={obj} index={index}
                                                  x={x} y={y} handleClick={this.handleClickButton} 
                                                  whoIsClicked={this.state.whoIsClicked} /> 
                                     </React.Fragment>

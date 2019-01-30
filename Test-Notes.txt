@@ -1,0 +1,25 @@
+
+
+When wanting to show code coverage -> npm run test --coverage, npx jest --coverage 
+
+Added Button component
+
+Added History component 
+
+
+Also I added new functionality to Board that needs testing
+
+such as clicking go and traversing history. 
+
+As well need to test resetGame() method after game ends.
+
+
+Adding tests to Button component first : 
+    Added snapshot test for Button.test.tsx 
+    Added simulated click tests for whether function was called 
+    and wether click has the added effect.
+
+
+What to test for History.test.tsx : 
+    Added Snapshot to <History /> 
+    

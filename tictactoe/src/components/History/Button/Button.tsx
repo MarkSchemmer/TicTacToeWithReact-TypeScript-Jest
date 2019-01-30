@@ -26,8 +26,8 @@ class Button extends Component<IProps> {
 
     
     public genButton = (content : string, shouldHighlight : boolean) => 
-        shouldHighlight ? <button onClick={ this.toggleIsClicked }><strong>{ content }</strong></button> 
-                        : <button onClick={ this.toggleIsClicked }> {content} </button>  
+        shouldHighlight ? <button className="hist-btn" onClick={ this.toggleIsClicked }><strong>{ content }</strong></button> 
+                        : <button className="hist-btn" onClick={ this.toggleIsClicked }> {content} </button>  
 
     public outputingButton = (obj : types.BoardWithMoves, 
                               index : number, 
