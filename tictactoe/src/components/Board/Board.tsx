@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import History from '../History/History'
 import Square from '../Square/Square'
 import './Board.css'
 
 import * as api from '../../API/api'
 
+import  * as BoardAttributes from './BoardTypes'
 
 interface IProps {
 
@@ -11,7 +13,7 @@ interface IProps {
 
 interface IState {
     name : string, 
-    board : any,
+    board : Array<BoardAttributes.BoardWithMoves>,
     turn : number,
     IsWinner : number | null,
 }
@@ -21,7 +23,7 @@ class Board extends Component<IProps, IState> {
 
     public state : IState = {
         name : 'Mark',
-        board : [genBoard()],
+        board : [api.genBoard()],
         turn : 0,
         IsWinner : null, 
     }
@@ -30,23 +32,41 @@ class Board extends Component<IProps, IState> {
     public onClick = (coor:Array<number>) => {
         const [x,y] = coor
 
-        if(this.state.board[this.state.turn][x][y].val !== null) return  
-        let copy = Object.assign({}, 
-            { board : this.state.board.concat(this.state.board), turn : this.state.turn+1, name: 'Mark' })
-        if(this.state.turn%2==0)
-            copy.board[this.state.turn][x][y].val = 'X'
-        else 
-            copy.board[this.state.turn][x][y].val = 'O'
-        this.setState(copy, () => {
-            this.checkForWinner()
-        })
-    }
+        if(this.state.board[this.state.turn].history[x][y].val !== null) return  
 
-    private SetIsWinner = (option:number|null) => this.setState({ IsWinner : option })  
+        if(this.state.IsWinner !== null) return 
+
+        // copy of history
+        let copyOfHistory = this.state.board[this.state.turn].history
+
+        // copy of Move 
+        let copyOfMove = this.state.board[this.state.turn].Move 
+        copyOfMove = [...copyOfMove, [x,y]]
+
+        let whosMoving
+    
+
+        if(this.state.turn%2==0)
+            whosMoving = 'X'
+        else 
+            whosMoving = 'O'
+
+        copyOfHistory[x][y].val = whosMoving
+
+        let newCopy = new BoardAttributes.BoardWithMoves(copyOfHistory, copyOfMove, whosMoving)
+
+        this.setState((prevState) => {
+            return {
+                turn : prevState.turn+1,
+                board : [...this.state.board, newCopy]
+            }
+        }, () => this.checkForWinner())
+    }
+ 
 
     public checkForWinner = () => {
-        console.log(this.state.board)
-        const hasWinner = api.IsWinner(this.state.board[this.state.turn])
+        console.log('the board: ',this.state.board)
+        const hasWinner = api.IsWinner(this.state.board[this.state.turn].history)
         let whichOption = null 
 
         if(hasWinner===api.OPTIONS.XWIN)
@@ -98,10 +118,11 @@ class Board extends Component<IProps, IState> {
         return (
             <React.Fragment>
                 <div className="main">
+                <History history={this.state.board} /> 
                   <div className="greetings">Greetings { this.state.name }</div>
                   <div className="whoms-turn">  { this.setWinner() } </div>
                     <div className="board">
-                            { this.state.board[this.state.turn].map((x:any) => 
+                            { this.state.board[this.state.turn].history.map((x:any) => 
                                <div className="row" key={ Date.now() * (Math.random() * 100) }>
                                     { x.map((z:any) => <Square key={z.id} {...z} 
                                         onClick={this.onClick.bind(this)} /> )}
@@ -115,13 +136,3 @@ class Board extends Component<IProps, IState> {
 
 export default Board 
 
-
-//let genBoard = () => [...Array(3)].map(x => [...Array(3)].map( y => ({ val: null, coor : [x,y]  }) ))
-let id = 0
-let genBoard = () => Array.from(new Array(3), (val, x) => {
-    return Array.from(new Array(3), (otherVal, y) => ({
-        id : id++,
-        coor : [x,y], 
-        val : null 
-    }))
-} )

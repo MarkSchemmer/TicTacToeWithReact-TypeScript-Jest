@@ -1,4 +1,4 @@
-
+import * as BoardTypes from '../components/Board/BoardTypes'
 
 export const OPTIONS = {
     XWIN : 1,
@@ -36,4 +36,19 @@ export function IsWinner (board){
     }
 
     return nb.every(x => x !== null ) ? OPTIONS.TIE : OPTIONS.MOREMOVES
+}
+
+
+export function genBoard () {
+    let id = 0
+    let squareObj = BoardTypes.SquareAttributes
+    let BoardObjWithMoves = BoardTypes.BoardWithMoves
+    let board = [...Array(3).keys()].map((val, x) => {
+        return [...Array(3).keys()].map((innerVal, y) => {
+            return new squareObj(id++, [x,y], null)
+        })
+    })
+
+
+    return new BoardObjWithMoves(board, [], null)
 }

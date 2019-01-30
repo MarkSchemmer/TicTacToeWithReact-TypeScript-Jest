@@ -1,0 +1,12 @@
+
+.history {
+    position: absolute;
+}
+
+.history button {
+    /* display: block; */
+    position: relative;
+    left : 200px;
+    display: flex;
+    flex-direction: column;
+}
