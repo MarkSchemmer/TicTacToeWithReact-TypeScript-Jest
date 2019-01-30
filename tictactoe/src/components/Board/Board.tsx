@@ -41,7 +41,8 @@ class Board extends Component<IProps, IState> {
 
         // copy of Move 
         let copyOfMove = this.state.board[this.state.turn].Move 
-        copyOfMove = [...copyOfMove, [x,y]]
+        copyOfMove = [x,y]
+
 
         let whosMoving
     

@@ -25,9 +25,11 @@ class History extends Component<IProps> {
                                                 </React.Fragment>
                                             )
                                     } else {
+                                        console.log(obj.Move)
+                                        let [x,y] = obj.Move
                                             return (
                                                 <React.Fragment>
-                                                    <button key={index}>{` Player: ${obj.WhomMoved} Move :${index} `}</button>   
+                                                    <button key={index}>{` Player: ${obj.WhomMoved} Move :${index} Coordinate : (${x},${y}) `}</button>   
                                                 </React.Fragment>
                                             )
                                     }}
