@@ -39,3 +39,8 @@ Found a [fix](https://github.com/Microsoft/TypeScript/issues/15230#issuecomment-
 
 I was having trouble exporting code from  api.js, for other files.<br />
 The link above clearly explains the fix.
+
+
+## Finished product
+
+![TypeScript-Jest-TicTacToe](typescript-jest-tictactoe.gif)
