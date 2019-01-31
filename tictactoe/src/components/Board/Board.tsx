@@ -39,8 +39,8 @@ class Board extends Component<IProps, IState> {
         let copyOfBaord = this.state.board.slice(0, index+1)
         let newTurn = index
         this.setState({ 
-            // board : copyOfBaord,
-            turn : newTurn
+           // board : copyOfBaord,
+            turn : newTurn 
          }, () => {
             // console.log(this.state.board)
             // console.log(this.state.turn)
@@ -67,6 +67,9 @@ class Board extends Component<IProps, IState> {
 
         if(this.state.IsWinner !== null) return 
 
+        let copyOfBoard  = this.state.board.slice(0, this.state.turn+1)
+
+
         // copy of history
         let copyOfHistory = JSON.parse(JSON.stringify(this.state.board.slice()[this.state.turn].history.slice().map(x => x).slice()))
 
@@ -87,12 +90,12 @@ class Board extends Component<IProps, IState> {
 
         let newCopy = new BoardAttributes.BoardWithMoves(copyOfHistory, copyOfMove, whosMoving)
 
-        this.setState((prevState) => {
-            return {
-                turn : prevState.turn+1,
-                board : prevState.board.concat(newCopy)
-            }
-        }, () => this.checkForWinner())
+            this.setState((prevState) => {
+                return {
+                    turn : prevState.turn+1,
+                    board : copyOfBoard.concat(newCopy)
+                }
+            }, () => this.checkForWinner())
     }
  
 
