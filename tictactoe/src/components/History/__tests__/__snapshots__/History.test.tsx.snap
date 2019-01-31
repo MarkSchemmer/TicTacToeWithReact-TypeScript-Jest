@@ -5,12 +5,14 @@ exports[` Snapshot for <History />   Snapshot of <History />  1`] = `
   className="history"
 >
   <button
-    className="hist-btn"
     onClick={[Function]}
   >
-     
-    Start of Match
-     
+    Toggle Moves
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Start Match
   </button>
 </div>
 `;

@@ -9,7 +9,8 @@ interface IProps {
     x : number, 
     y : number, 
     whoIsClicked : number | null, 
-    handleClick : any 
+    handleClick : any, 
+    StepMove : number
 }
 
 class Button extends Component<IProps> {
@@ -21,48 +22,35 @@ class Button extends Component<IProps> {
 
 
     public toggleIsClicked = () : void => {
-        this.props.handleClick(this.props.index)
+        this.props.handleClick(this.props.StepMove)
     }
 
     
     public genButton = (content : string, shouldHighlight : boolean) => 
-        shouldHighlight ? <button className="hist-btn" onClick={ this.toggleIsClicked }><strong>{ content }</strong></button> 
-                        : <button className="hist-btn" onClick={ this.toggleIsClicked }> {content} </button>  
+        shouldHighlight ? <button className="hist-btn" onClick={() =>  this.toggleIsClicked() }><strong>{ content }</strong></button> 
+                        : <button className="hist-btn" onClick={() =>  this.toggleIsClicked() }> {content} </button>  
 
     public outputingButton = (obj : types.BoardWithMoves, 
                               index : number, 
                               x : number, 
-                              y : number) => {
+                              y : number, StepMove : number) => {
 
-        let complexButton = ` Player: ${obj.WhomMoved} Move :${index} Coordinate : (${x}, ${y}) `
-        let originalButton
+        
 
-        switch(index){
-            case 0 :
-                originalButton = (
-                    <React.Fragment key={index}>
-                        { this.genButton("Start of Match", this.props.whoIsClicked===index) } 
-                    </React.Fragment>
-                )
-            break 
+        let complexButton = ` Player: ${obj.WhomMoved} Move :${StepMove} Coordinate : (${x}, ${y}) `
 
-           default :
-                    originalButton = (
-                    <React.Fragment key={index*Date.now()}>
-                            { this.genButton(complexButton, this.props.whoIsClicked===index) }
-                    </React.Fragment>
-                    )
-            break 
-        }
-
-        return originalButton
+        return (
+                <React.Fragment key={index*Date.now()}>
+                        { this.genButton(complexButton, this.props.whoIsClicked===StepMove) }
+                </React.Fragment>
+            )
     }
 
     public render () {
-       let { obj, index, x, y} = this.props
+       let { obj, index, x, y, StepMove } = this.props
         return (
             <React.Fragment>
-                { this.outputingButton(obj, index, x, y)}
+                { this.outputingButton(obj, index, x, y, StepMove) }
             </React.Fragment>
         )
     }

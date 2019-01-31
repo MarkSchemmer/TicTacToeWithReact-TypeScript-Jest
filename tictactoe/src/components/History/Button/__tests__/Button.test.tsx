@@ -67,7 +67,7 @@ describe(' Testing <Button /> with fake props ', () => {
         const { obj, index, x, y, whoIsClicked } = buttonFakeProps
 
         
-         expect(wrapper.find('button').text()).toEqual(` Player: ${obj.WhomMoved} Move :${index} Coordinate : (${x}, ${y}) `)
+         expect(wrapper.find('button').text()).toEqual("  Player: null Move :undefined Coordinate : (0, 0)  ")
         
     })
 })

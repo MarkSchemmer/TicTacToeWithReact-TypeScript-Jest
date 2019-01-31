@@ -5,11 +5,12 @@ import './History.css'
 
 interface IProps {
     history : Array<BoardAttributes.BoardWithMoves>, 
-    goBackInTime : any 
+    goBackInTime : any
 }
 
 interface IState {
-    whoIsClicked : number | null 
+    whoIsClicked : number | null,
+    ShouldReverseButtons : boolean 
 }
 
 class History extends Component<IProps, IState> {
@@ -21,24 +22,37 @@ class History extends Component<IProps, IState> {
 
 
     public state : IState = {
-            whoIsClicked : null 
+            whoIsClicked : null ,
+            ShouldReverseButtons : false 
     }
 
-    public handleClickButton = (index: number | null) => {
-        this.setState({ whoIsClicked : index}, () => this.props.goBackInTime(index) )
+    public handleClickButton = (StepMove: number | null) => {
+        this.setState({ whoIsClicked : StepMove}, () => this.props.goBackInTime(StepMove) )
+    }
+
+    public handleToggleButton = () => {
+        this.setState((prevState) => ({ ShouldReverseButtons : !prevState.ShouldReverseButtons }))
     }
 
         public render () {
-            
+                let startMatch = this.props.history.findIndex(x => x.WhomMoved === null)
+
+                let historyFiltered = this.props.history.filter((item,index) => index !== startMatch)
+
+                if(this.state.ShouldReverseButtons)
+                    historyFiltered.reverse() 
+
             return (
                     <div className="history">
-                            { this.props.history.map((obj, index) => {
+                        <button onClick={() => this.handleToggleButton() }>Toggle Moves</button>
+                        <button onClick={() => this.handleClickButton(startMatch)}>Start Match</button>
+                            { historyFiltered.map((obj, index) => {
                                 let [x, y] = obj.Move
                                 return (
                                     <React.Fragment key={index*Date.now()}>
                                         <Button  obj={obj} index={index}
                                                  x={x} y={y} handleClick={this.handleClickButton} 
-                                                 whoIsClicked={this.state.whoIsClicked} /> 
+                                                 whoIsClicked={this.state.whoIsClicked} StepMove={obj.StepMove} /> 
                                     </React.Fragment>
                                 )
                             })}

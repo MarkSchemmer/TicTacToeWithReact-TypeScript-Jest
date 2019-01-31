@@ -10,6 +10,7 @@ interface ISquareAttributes {
 interface IBoardWithMove {
     history : Array<Array<ISquareAttributes>>,
     Move : Array<number> | null,
+    StepMove : number,
     WhomMoved : string | null 
 }
 
@@ -32,13 +33,16 @@ export class BoardWithMoves implements IBoardWithMove {
 
     public Move : Array<number>
 
+    public StepMove : number 
+
     public WhomMoved : string | null 
     
     constructor(history:Array<Array<SquareAttributes>>,
          Move : Array<number>, 
-         WhomMoved : string | null = null ){
+         WhomMoved : string | null = null, StepMove : number ){
         this.history = history
         this.Move = Move 
         this.WhomMoved = WhomMoved
+        this.StepMove = StepMove
     }
 }

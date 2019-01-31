@@ -88,7 +88,7 @@ class Board extends Component<IProps, IState> {
 
         copyOfHistory[x][y].val = whosMoving
 
-        let newCopy = new BoardAttributes.BoardWithMoves(copyOfHistory, copyOfMove, whosMoving)
+        let newCopy = new BoardAttributes.BoardWithMoves(copyOfHistory, copyOfMove, whosMoving, this.state.turn+1)
 
             this.setState((prevState) => {
                 return {
@@ -111,9 +111,7 @@ class Board extends Component<IProps, IState> {
                 whichOption = api.OPTIONS.TIE
 
      if (whichOption)
-        this.setState( { IsWinner : whichOption }, () => {
-            this.setWinner()
-        }) 
+        this.setState( { IsWinner : whichOption }, () => this.setWinner() ) 
     }
 
     public setWinner = () => {
@@ -152,7 +150,7 @@ class Board extends Component<IProps, IState> {
         return (
             <React.Fragment>
                 <div className="main">
-                <History history={this.state.board} goBackInTime={this.goBackInTime} /> 
+                <History history={this.state.board} goBackInTime={this.goBackInTime}  /> 
                   <div className="greetings">Greetings { this.state.name }</div>
                   <div className="whoms-turn">  { this.setWinner() } </div>
                     <div className="board">
