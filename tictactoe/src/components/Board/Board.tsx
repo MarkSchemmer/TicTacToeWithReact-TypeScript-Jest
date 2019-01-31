@@ -39,12 +39,7 @@ class Board extends Component<IProps, IState> {
         let copyOfBaord = this.state.board.slice(0, index+1)
         let newTurn = index
         this.setState({ 
-           // board : copyOfBaord,
             turn : newTurn 
-         }, () => {
-            // console.log(this.state.board)
-            // console.log(this.state.turn)
-            // console.log(this.state.board[this.state.turn])
          })
     } 
 
