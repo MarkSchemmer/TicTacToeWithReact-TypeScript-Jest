@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 interface ISquareAttributes {
     id : number, 
     coor : Array<number> 
-    val : string | null 
+    val : string | null,
+    IsWinningSquare : boolean | null 
 }
 
 interface IBoardWithMove {
@@ -19,11 +20,13 @@ export class SquareAttributes implements ISquareAttributes {
     public id : number; 
     public coor : Array<number>;
     public val : string | null;
+    public IsWinningSquare : boolean | null 
 
     constructor(id : number, coor : Array<number>, val : string | null = null){
         this.id = id
         this.coor = coor 
         this.val = val 
+        this.IsWinningSquare = null 
     }
 }
 

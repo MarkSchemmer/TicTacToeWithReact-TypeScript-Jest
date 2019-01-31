@@ -16,6 +16,7 @@ For this project I implemented a small Tic Tac Toe game but I used the following
 * Add a toggle button that lets you sort the moves in either ascending or descending order
 * When someone wins, highlight the three squares that caused the win
 * When no one wins, display a message about the result being a draw
+* Added slow replay ability which alows to see all moves in sequential manner
 
 
 Additional notes and QA: <br />

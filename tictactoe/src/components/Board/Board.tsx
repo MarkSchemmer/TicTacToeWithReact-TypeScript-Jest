@@ -16,6 +16,7 @@ interface IState {
     board : Array<BoardAttributes.BoardWithMoves>,
     turn : number,
     IsWinner : number | null,
+    replayBeingCalled : boolean | null 
 }
 
 class Board extends Component<IProps, IState> {
@@ -32,6 +33,7 @@ class Board extends Component<IProps, IState> {
         board : [api.genBoard()],
         turn : 0,
         IsWinner : null, 
+        replayBeingCalled : null 
     }
 
 
@@ -109,6 +111,22 @@ class Board extends Component<IProps, IState> {
         this.setState( { IsWinner : whichOption }, () => this.setWinner() ) 
     }
 
+
+    public highLightWinningSquares = () => {
+        // copy of history
+
+        let copyOfBaord = this.state.board.slice()
+
+        let winningSquares = api.getWinningSquares(copyOfBaord[this.state.turn].history)
+
+        console.log(winningSquares)
+
+        winningSquares.forEach(item => {
+            let [x,y] = item 
+            copyOfBaord[this.state.turn].history[x][y].IsWinningSquare = true 
+        })
+    }
+
     public setWinner = () => {
         if(this.state.IsWinner !== null){
 
@@ -119,6 +137,7 @@ class Board extends Component<IProps, IState> {
                     </React.Fragment>
                 )
             } else {
+               if(this.state.replayBeingCalled !== true ) this.highLightWinningSquares()
                 if(this.state.IsWinner===api.OPTIONS.XWIN){
                     return (
                         <React.Fragment>
@@ -141,6 +160,13 @@ class Board extends Component<IProps, IState> {
         }
     }
 
+    public slowReplay = (count:number = 0) => {
+        if(count === this.state.board.length-1) return this.setState({ turn : this.state.board.length-1})
+        setTimeout(() => {
+            this.setState({ turn : count}, () => this.slowReplay(count+1))
+        }, 1005)
+    }
+
     public render () {
         return (
             <React.Fragment>
@@ -157,6 +183,7 @@ class Board extends Component<IProps, IState> {
                     </div>
                    { this.state.IsWinner ? <div className="play-again">
                                 <button onClick={() => this.resetGame() }>Click to play again.</button>
+                                <button onClick={() => this.setState({ replayBeingCalled : true}, () => this.slowReplay() ) }>Watch slow replay</button>
                    </div> : null  }
                 </div>
             </React.Fragment>
